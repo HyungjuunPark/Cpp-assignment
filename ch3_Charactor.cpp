@@ -1,34 +1,33 @@
-//Àü»ç-°íºí¸°
-//#include <iostream>
-//#include "Charactor.h"
-//#include <string>
-//#include <cstdlib>
-//
-//using namespace std;
-//
-//void Charactor::InitMembers(const string name, int hp, int power) {
-//	this->name = name;
-//	this->hp = hp;
-//	this->attackPower = power;
-//}
-//
-//void Charactor::ShowStatus() {
-//	cout << "ÀÌ¸§: " << name << ", HP: " << hp << '\n';
-//}
-//
-//void Charactor::Attack(Charactor& target) {
-//	cout << name << "ÀÌ(°¡) " << target.name << "À»(¸¦) °ø°ÝÇÏ¿© " << 
-//		attackPower << "ÀÇ ÇÇÇØ¸¦ ÀÔÇû½À´Ï´Ù!\n";
-//	target.TakeDamage(attackPower);
-//}
-//
-//void Charactor::TakeDamage(int damage) {
-//	hp -= damage;
-//}
-//
-//bool Charactor::IsDead() {
-//	if (hp <= 0)
-//		return true;
-//	else
-//		return false;
-//}
+#include <iostream>
+#include "ch3_header.h"
+#include <string>
+#include <cstdlib>
+
+using namespace std;
+
+void Charactor::InitMembers(const string name, int hp, int power) {
+	this->name = name;
+	this->hp = hp;
+	this->attackPower = power;
+}
+
+void Charactor::ShowStatus() {
+	cout << "ì´ë¦„: " << name << ", HP: " << hp << '\n';
+}
+
+void Charactor::Attack(Charactor& target) {
+	cout << name << "ì´(ê°€) " << target.name << "ì„(ë¥¼) ê³µê²©í•˜ì—¬ " << 
+		attackPower << "ì˜ í”¼í•´ë¥¼ ìž…í˜”ìŠµë‹ˆë‹¤!\n";
+	target.TakeDamage(attackPower);
+}
+
+void Charactor::TakeDamage(int damage) {
+	hp -= damage;
+}
+
+bool Charactor::IsDead() {
+	if (hp <= 0)
+		return true;
+	else
+		return false;
+}
