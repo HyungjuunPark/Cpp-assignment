@@ -8,29 +8,29 @@ private:
 	int stock;
 
 public:
-	// »ı¼ºÀÚ: strlen, strcpy ¾øÀÌ ±íÀº º¹»ç ±¸Çö
-	Book(int ID, const char* bookTitle, int stock) {
-		this->bookID = ID;
+	// ìƒì„±ì: strlen, strcpy ì—†ì´ ê¹Šì€ ë³µì‚¬ êµ¬í˜„
+	Book(int bookID, const char* title, int stock) {
+		this->bookID = bookID;
 		this->stock = stock;
 
-		// 1. ¹®ÀÚ¿­ ±æÀÌ Á÷Á¢ °è»ê
+		// 1. ë¬¸ìì—´ ê¸¸ì´ ì§ì ‘ ê³„ì‚°
 		int len = 0;
-		while (bookTitle[len] != '\0') {
+		while (title[len] != '\0') {
 			len++;
 		}
 
-		// 2. Èü ¸Ş¸ğ¸® µ¿Àû ÇÒ´ç (³Î ¹®ÀÚ¸¦ Æ÷ÇÔÇÏ¿© len + 1)
+		// 2. í™ ë©”ëª¨ë¦¬ ë™ì  í• ë‹¹ (ë„ ë¬¸ìë¥¼ í¬í•¨í•˜ì—¬ len + 1)
 		this->title = new char[len + 1];
 
-		// 3. ¹®ÀÚ¿­ ³»¿ë Á÷Á¢ º¹»ç (±íÀº º¹»ç)
+		// 3. ë¬¸ìì—´ ë‚´ìš© ì§ì ‘ ë³µì‚¬ (ê¹Šì€ ë³µì‚¬)
 		int i = 0;
-		while (i <= len) { // ³Î ¹®ÀÚ±îÁö º¹»çÇÏ±â À§ÇØ <= len
-			this->title[i] = bookTitle[i];
+		while (i <= len) { // ë„ ë¬¸ìê¹Œì§€ ë³µì‚¬í•˜ê¸° ìœ„í•´ <= len
+			this->title[i] = title[i];
 			i++;
 		}
 	}
 
-	// ¼Ò¸êÀÚ: Èü ¸Ş¸ğ¸® ÇØÁ¦
+	// ì†Œë©¸ì: í™ ë©”ëª¨ë¦¬ í•´ì œ
 	~Book() {
 		delete[] title;
 	}
@@ -41,11 +41,11 @@ public:
 
 	void BorrowBook() {
 		if (stock >= 1) {
-			cout << "'" << title << "' µµ¼­¸¦ ´ë¿©Çß½À´Ï´Ù.\n";
+			cout << "'" << title << "' ë„ì„œë¥¼ ëŒ€ì—¬í–ˆìŠµë‹ˆë‹¤.\n";
 			stock--;
 		}
 		else
-			cout << "Àç°í°¡ ºÎÁ·ÇÏ¿© ´ë¿©ÇÒ ¼ö ¾ø½À´Ï´Ù.\n";
+			cout << "ì¬ê³ ê°€ ë¶€ì¡±í•˜ì—¬ ëŒ€ì—¬í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n";
 	}
 
 	void ReturnBook() {
@@ -53,25 +53,25 @@ public:
 	}
 
 	void ShowBookInfo() const {
-		cout << "--- µµ¼­ Á¤º¸ ---\n";
-		cout << "µµ¼­ ¹øÈ£: " << bookID << '\n';
-		cout << "Á¦	¸ñ: " << title << '\n'; // ¿Ã¹Ù¸£°Ô Ãâ·ÂµÊ
-		cout << "Àç°í ¼ö·®: " << stock << "±Ç\n";
+		cout << "--- ë„ì„œ ì •ë³´ ---\n";
+		cout << "ë„ì„œ ë²ˆí˜¸: " << bookID << '\n';
+		cout << "ì œ	ëª©: " << title << '\n'; // ì˜¬ë°”ë¥´ê²Œ ì¶œë ¥ë¨
+		cout << "ì¬ê³  ìˆ˜ëŸ‰: " << stock << "ê¶Œ\n";
 	}
 };
 
 int main() {
-	// »ó¼ö ¹®ÀÚ¿­ ¸®ÅÍ·²À» ¾ÈÀüÇÏ°Ô Àü´Ş
+	// ìƒìˆ˜ ë¬¸ìì—´ ë¦¬í„°ëŸ´ì„ ì•ˆì „í•˜ê²Œ ì „ë‹¬
 	Book oop_book(101, "C++ Programming", 5);
 	oop_book.ShowBookInfo();
 
 	oop_book.BorrowBook();
 	oop_book.BorrowBook();
-	cout << "\n## 2±Ç ´ë¿© ÈÄ ##" << '\n';
+	cout << "\n## 2ê¶Œ ëŒ€ì—¬ í›„ ##" << '\n';
 	oop_book.ShowBookInfo();
 
 	oop_book.ReturnBook();
-	cout << "\n## 1±Ç ¹İ³³ ÈÄ ##" << '\n';
+	cout << "\n## 1ê¶Œ ë°˜ë‚© í›„ ##" << '\n';
 	oop_book.ShowBookInfo();
 
 	return 0;
