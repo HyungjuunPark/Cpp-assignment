@@ -31,10 +31,9 @@ int main() {
 	cout << "--- 결투 종료 ---\n";
 
 	if (warrior.IsDead() == true) {
-		cout << "승리자: " << "goblin" << '\n';
+		cout << "승리자: goblin" << '\n';
 	}
 	else
-		cout << "승리자: " << "warrior" << '\n';
+		cout << "승리자: warrior" << '\n';
 	return 0;
 }
-
