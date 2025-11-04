@@ -27,7 +27,7 @@ public:
 	}
 
 	void ShowInfo() {
-		cout << "[" << ChannelName << "] ±¸µ¶ÀÚ: " << subscriberCount << '\n';
+		cout << "[" << ChannelName << "] êµ¬ë…ìž: " << subscriberCount << '\n';
 	}
 
 	static int GetTotalAllSubscribers() {
@@ -38,40 +38,41 @@ public:
 int YoutubeChannel::totalAllSubscribers = 0;
 
 void CreatTempChannel() {
-	cout << "--- ÀÓ½Ã Ã¤³Î »ý¼º (+1000) ---\n";
-	YoutubeChannel temp("ÀÓ½Ã Ã¤³Î", 1000);
+	cout << "--- ìž„ì‹œ ì±„ë„ ìƒì„± (+1000) ---\n";
+	YoutubeChannel temp("ìž„ì‹œ ì±„ë„", 1000);
 	temp.ShowInfo();
-	cout << "ÇöÀç ÃÑ ±¸µ¶ÀÚ: " << YoutubeChannel::GetTotalAllSubscribers() << '\n';
-	cout << "--- ÀÓ½Ã Ã¤³Î ¼Ò¸ê (ÇÔ¼ö Á¾·á) (-1000)\n";
+	cout << "í˜„ìž¬ ì´ êµ¬ë…ìž: " << YoutubeChannel::GetTotalAllSubscribers() << '\n';
+	cout << "--- ìž„ì‹œ ì±„ë„ ì†Œë©¸ (í•¨ìˆ˜ ì¢…ë£Œ) (-1000)\n";
 }
 
 int main() {
-	cout << "ÃÖ´ë Ã¤³Î ÀÌ¸§ ±æÀÌ: " << YoutubeChannel::MAX_NAME_LEN << '\n';
-	cout << "ÇöÀç ÃÑ ±¸µ¶ÀÚ: " << YoutubeChannel::GetTotalAllSubscribers() << '\n';
+	cout << "ìµœëŒ€ ì±„ë„ ì´ë¦„ ê¸¸ì´: " << YoutubeChannel::MAX_NAME_LEN << '\n';
+	cout << "í˜„ìž¬ ì´ êµ¬ë…ìž: " << YoutubeChannel::GetTotalAllSubscribers() << '\n';
 	cout << "------------------------\n";
 
-	YoutubeChannel ch1("Ã¤³ÎA", 100);
+	YoutubeChannel ch1("ì±„ë„A", 100);
 	ch1.ShowInfo();
-	cout << "ÇöÀç ÃÑ ±¸µ¶ÀÚ: " << YoutubeChannel::GetTotalAllSubscribers() << '\n';
+	cout << "í˜„ìž¬ ì´ êµ¬ë…ìž: " << YoutubeChannel::GetTotalAllSubscribers() << '\n';
 	cout << "------------------------\n";
 
-	YoutubeChannel ch2("Ã¤³ÎB", 200);
+	YoutubeChannel ch2("ì±„ë„B", 200);
 	ch2.ShowInfo();
-	cout << "ÇöÀç ÃÑ ±¸µ¶ÀÚ: " << YoutubeChannel::GetTotalAllSubscribers() << '\n';
+	cout << "í˜„ìž¬ ì´ êµ¬ë…ìž: " << YoutubeChannel::GetTotalAllSubscribers() << '\n';
 	cout << "------------------------\n";
 
 	CreatTempChannel();
 
 	cout << "------------------------\n";
 
-	cout << "ÀÓ½Ã Ã¤³Î ¼Ò¸ê ÈÄ ÃÑ ±¸µ¶ÀÚ: " << YoutubeChannel::GetTotalAllSubscribers() << '\n';
+	cout << "ìž„ì‹œ ì±„ë„ ì†Œë©¸ í›„ ì´ êµ¬ë…ìž: " << YoutubeChannel::GetTotalAllSubscribers() << '\n';
 	cout << "------------------------\n";
 
-	cout << "Ã¤³ÎA ±¸µ¶ÀÚ º¯°æ (100 -> 150) (+50)\n";
+	cout << "ì±„ë„A êµ¬ë…ìž ë³€ê²½ (100 -> 150) (+50)\n";
 	ch1.ChangeSubscribers(150);
 	ch1.ShowInfo();
 
-	cout << "ÇöÀç ÃÑ ±¸µ¶ÀÚ: " << YoutubeChannel::GetTotalAllSubscribers() << '\n';
+	cout << "í˜„ìž¬ ì´ êµ¬ë…ìž: " << YoutubeChannel::GetTotalAllSubscribers() << '\n';
 
 	return 0;
+
 }
