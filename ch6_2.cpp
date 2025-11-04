@@ -32,8 +32,8 @@ public:
 
 	void ShowInfo() const {
 		infoAccessCount++;
-		cout << "[" << ChannelName << "] ±¸µ¶ÀÚ: " << subscriberCount << " | ±¤°í¼öÀÍ: " << adRevenue
-			<< " | (Á¶È¸¼ö: " << infoAccessCount << ")\n";
+		cout << "[" << ChannelName << "] êµ¬ë…ìž: " << subscriberCount << " | ê´‘ê³ ìˆ˜ìµ: " << adRevenue
+			<< " | (ì¡°íšŒìˆ˜: " << infoAccessCount << ")\n";
 	}
 
 	static int GetTotalAllSubscribers() {
@@ -44,25 +44,24 @@ public:
 class ChannelAnalytics {
 public:
 	static void GenerateRevenueReport(const YoutubeChannel& ch) {
-		cout << "[Analytics] Ã¤³Î [" << ch.ChannelName << "]ÀÇ ±¤°í ¼öÀÍÀº ["
-			<< ch.adRevenue << "]¿øÀÔ´Ï´Ù.\n";
+		cout << "[Analytics] ì±„ë„ [" << ch.ChannelName << "]ì˜ ê´‘ê³  ìˆ˜ìµì€ ["
+			<< ch.adRevenue << "]ì›ìž…ë‹ˆë‹¤.\n";
 	}
 };
 
 int YoutubeChannel::totalAllSubscribers = 0;
 
-
 int main() {
-	cout << "--- ÀÏ¹Ý °´Ã¼ Å×½ºÆ® ---\n";
-	YoutubeChannel ch1("Ã¤³ÎA", 100, 1000);
+	cout << "--- ì¼ë°˜ ê°ì²´ í…ŒìŠ¤íŠ¸ ---\n";
+	YoutubeChannel ch1("ì±„ë„A", 100, 1000);
 	ch1.ShowInfo();
 	ch1.ShowInfo();
 
 	ChannelAnalytics::GenerateRevenueReport(ch1);
 
-	cout << "\n--- const °´Ã¼ Å×½ºÆ® ---\n";
+	cout << "\n--- const ê°ì²´ í…ŒìŠ¤íŠ¸ ---\n";
 	
-	const YoutubeChannel ch_const("°íÁ¤ Ã¤³ÎC", 500, 5000);
+	const YoutubeChannel ch_const("ê³ ì • ì±„ë„C", 500, 5000);
 
 	ch_const.ShowInfo();
 	ch_const.ShowInfo();
@@ -71,3 +70,4 @@ int main() {
 
 	return 0;
 }
+
