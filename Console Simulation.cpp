@@ -6,7 +6,7 @@
 #include <cstdlib> 
 using namespace std;
 
-// ÄÜ¼Ö È­¸éÀ» Áö¿ì´Â ÇÔ¼ö (OS¿¡ µû¶ó ´Ù¸§)
+// ì½˜ì†” í™”ë©´ì„ ì§€ìš°ëŠ” í•¨ìˆ˜ (OSì— ë”°ë¼ ë‹¤ë¦„)
 void clearScreen() {
 #ifdef _WIN32
     // Windows
@@ -14,10 +14,10 @@ void clearScreen() {
 #endif
 }
 
-// ´ŞÀÇ À§»ó ±×¸² (5x11 Å©±â)
+// ë‹¬ì˜ ìœ„ìƒ ê·¸ë¦¼ (5x11 í¬ê¸°)
 const vector<vector<string>> moonPhases = {
-    // 1. New Moon (»è)
-    // ¿ÏÀüÈ÷ ¾îµÎ¿î ´Ş
+    // 1. New Moon (ì‚­)
+    // ì™„ì „íˆ ì–´ë‘ìš´ ë‹¬
    {
         "",
         "",
@@ -27,8 +27,8 @@ const vector<vector<string>> moonPhases = {
         "",
         ""
     },
-    // 2. Waxing Crescent (ÃÊ½Â´Ş)
-    // ¿À¸¥ÂÊ ¾Æ·¡¸¸ ¹àÀº ´Ş (¿À¸¥ÂÊÀÌ Á¡Á¡ Â÷¿À¸§)
+    // 2. Waxing Crescent (ì´ˆìŠ¹ë‹¬)
+    // ì˜¤ë¥¸ìª½ ì•„ë˜ë§Œ ë°ì€ ë‹¬ (ì˜¤ë¥¸ìª½ì´ ì ì  ì°¨ì˜¤ë¦„)
     {
         "      **",
         "       ***",
@@ -38,8 +38,8 @@ const vector<vector<string>> moonPhases = {
         "       ***",
         "      **"
     },
-    // 3. First Quarter (»óÇö´Ş)
-    // ¿À¸¥ÂÊ Àı¹İÀÌ ¹àÀº ´Ş
+    // 3. First Quarter (ìƒí˜„ë‹¬)
+    // ì˜¤ë¥¸ìª½ ì ˆë°˜ì´ ë°ì€ ë‹¬
     {
         "      **",
         "      ****",
@@ -49,8 +49,8 @@ const vector<vector<string>> moonPhases = {
         "      ****",
         "      **"
     },
-    // 4. Waxing Gibbous (»óÇö¸Á°£´Ş)
-    // ¿À¸¥ÂÊ 3/4 ÀÌ»óÀÌ ¹àÀº ´Ş
+    // 4. Waxing Gibbous (ìƒí˜„ë§ê°„ë‹¬)
+    // ì˜¤ë¥¸ìª½ 3/4 ì´ìƒì´ ë°ì€ ë‹¬
     {
         "      **",
         "     *****",
@@ -60,8 +60,8 @@ const vector<vector<string>> moonPhases = {
         "     *****",
         "      **"
     },
-    // 5. Full Moon (¸Á)
-    // ¿ÏÀüÈ÷ ¹àÀº ´Ş
+    // 5. Full Moon (ë§)
+    // ì™„ì „íˆ ë°ì€ ë‹¬
     {
         "    ****",
         "  ********",
@@ -71,8 +71,8 @@ const vector<vector<string>> moonPhases = {
         "  ********",
         "    ****"
     },
-    // 6. Waning Gibbous (ÇÏÇö¸Á°£´Ş)
-    // ¿ŞÂÊ 3/4 ÀÌ»óÀÌ ¹àÀº ´Ş (¿ŞÂÊºÎÅÍ Á¡Á¡ ±â¿ï¾îÁü)
+    // 6. Waning Gibbous (í•˜í˜„ë§ê°„ë‹¬)
+    // ì™¼ìª½ 3/4 ì´ìƒì´ ë°ì€ ë‹¬ (ì™¼ìª½ë¶€í„° ì ì  ê¸°ìš¸ì–´ì§)
     {
         "    **",
         "  *****",
@@ -82,8 +82,8 @@ const vector<vector<string>> moonPhases = {
         "  *****",
         "    **"
     },
-    // 7. Last Quarter (ÇÏÇö´Ş)
-    // ¿ŞÂÊ Àı¹İÀÌ ¹àÀº ´Ş
+    // 7. Last Quarter (í•˜í˜„ë‹¬)
+    // ì™¼ìª½ ì ˆë°˜ì´ ë°ì€ ë‹¬
     {
         "    **",
         "  ****",
@@ -93,8 +93,8 @@ const vector<vector<string>> moonPhases = {
         "  ****",
         "    **"
     },
-    // 8. Waning Crescent (±×¹Ê´Ş)
-    // ¿ŞÂÊ ¾Æ·¡¸¸ ¹àÀº ´Ş
+    // 8. Waning Crescent (ê·¸ë¯ë‹¬)
+    // ì™¼ìª½ ì•„ë˜ë§Œ ë°ì€ ë‹¬
     {
         "    **",
         "  ***",
@@ -106,10 +106,10 @@ const vector<vector<string>> moonPhases = {
     },
 };
 
-// ´ŞÀÇ À§»ó ÀÌ¸§ (Âü°í¿ë)
+// ë‹¬ì˜ ìœ„ìƒ ì´ë¦„ (ì°¸ê³ ìš©)
 const vector<string> phaseNames = {
-    "1. New Moon (»è)", "2. Waxing Crescent (ÃÊ½Â´Ş)", "3. First Quarter (»óÇö´Ş)", "4. Waxing Gibbous (»óÇö¸Á°£´Ş)",
-    "5. Full Moon (¸Á)", "6. Waning Gibbous (ÇÏÇö¸Á°£´Ş)", "7. Last Quarter (ÇÏÇö´Ş)", "8. Waning Crescent (±×¹Ê´Ş)"
+    "1. New Moon (ì‚­)", "2. Waxing Crescent (ì´ˆìŠ¹ë‹¬)", "3. First Quarter (ìƒí˜„ë‹¬)", "4. Waxing Gibbous (ìƒí˜„ë§ê°„ë‹¬)",
+    "5. Full Moon (ë§)", "6. Waning Gibbous (í•˜í˜„ë§ê°„ë‹¬)", "7. Last Quarter (í•˜í˜„ë‹¬)", "8. Waning Crescent (ê·¸ë¯ë‹¬)"
 };
 
 void displayPhase(const vector<string>& phase, const string& name) {
@@ -123,7 +123,7 @@ void displayPhase(const vector<string>& phase, const string& name) {
 
 int main() {
     const int delay_ms = 100;
-    // ½Ã¹Ä·¹ÀÌ¼Ç ·çÇÁ
+    // ì‹œë®¬ë ˆì´ì…˜ ë£¨í”„
     while (true) {
         for (size_t i = 0; i < moonPhases.size(); ++i) {
             displayPhase(moonPhases[i], phaseNames[i]);
@@ -133,4 +133,5 @@ int main() {
     }
 
     return 0;
+
 }
