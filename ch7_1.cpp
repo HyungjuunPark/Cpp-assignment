@@ -5,102 +5,102 @@
 
 using namespace std;
 
-const int PLAYER_DEFAULT_HEALTH = 100;
-const int MONSTER_DEFAULT_HEALTH = 50;
-
-class Monster;
-
 class Entity {
 protected:
-	string name;
-	int health;
+    string name;
+    int health;
 public:
-	Entity(string name, int defaultHealth) : name(name), health(defaultHealth) {}
-	~Entity() {}
+    Entity(string name, int defaultHealth) : name(name), health(defaultHealth) {}
+    virtual ~Entity() {}
 
-	void takeDamage(int dmg) {
-		health -= dmg;
-		if (health < 0) health = 0;
-		cout << " [" << name << "]ÀÌ " << dmg << "ÀÇ µ¥¹ÌÁö¸¦ ÀÔ¾ú½À´Ï´Ù." << " (HP: " << health << ")\n";
-	}
-	bool isAlive() const {
-		return health > 0;
-	}
-	string getName() const { return name; }
+    virtual void takeDamage(int dmg) {
+        health -= dmg;
+        if (health < 0) health = 0;
+        cout << "  [" << name << "]ì´ " << dmg << "ì˜ ë°ë¯¸ì§€ë¥¼ ìž…ì—ˆìŠµë‹ˆë‹¤. "
+            << "(HP: " << health << ")\n";
+    }
+    bool isAlive() const {
+        return health > 0;
+    }
+    string getName() const { return name; }
 
-	void displayStatus() const {
-		cout << "Entity [" << name << "] - HP: " << health << '\n';
-	}
-	void attack(Entity& target);
+    virtual void displayStatus() const {
+        cout << "Entity [" << name << "] - HP: " << health << endl;
+    }
 };
+
+class Player;
+class Monster;
 
 class Player : public Entity {
 public:
-	Player(string name) : Entity(name, PLAYER_DEFAULT_HEALTH) {}
+    Player(string name) : Entity(name, 100) {
+    }
 
-	void displayStatus() const {
-		cout << "Player [" << name << "] - HP: " << health << '\n';
-	}
+    void displayStatus() const  {
+        cout << "Player [" << name << "] - HP: " << health << endl;
+    }
 
-	void attack(Monster& target);
+    void attack(Monster& target);
 };
 
 class Monster : public Entity {
 public:
-	Monster(string name) : Entity(name, MONSTER_DEFAULT_HEALTH) {}
+    Monster(string name, int defaultHealth = 50) : Entity(name, 50) {
+    }
 
-	void displayStatus() const {
-		cout << "Monster [" << name << "] - HP: " << health << '\n';
-	}
+    void displayStatus() const  {
+        cout << "Monster [" << name << "] - HP: " << health << endl;
+    }
 
-	void attack(Player& target);
+    void attack(Player& target);
 };
 
 void Player::attack(Monster& target) {
-	int damage = rand() % 30 + 1;
-
-	cout <<"Player ["<<name<<"]°¡ Monster [" << target.getName() << "]À»(¸¦) °ø°Ý!\n";
-	target.takeDamage(damage);
+    cout << "Player [" << this->name << "]ê°€ Monster ["
+        << target.getName() << "]ì„(ë¥¼) ê³µê²©!\n";
+    int damage = rand() % 30 + 1;
+    target.takeDamage(damage);
 }
 
 void Monster::attack(Player& target) {
-	int damage = rand() % 11 + 20;
-
-	cout << "Monster [" << name << "]°¡ Player [" << target.getName() << "]À»(¸¦) °ø°Ý!\n";
-	target.takeDamage(damage);
+    cout << "Monster [" << this->name << "]ê°€ Player ["
+        << target.getName() << "]ì„(ë¥¼) ê³µê²©!\n";
+    int damage = rand() % 11 + 20;
+    target.takeDamage(damage);
 }
 
-void Entity::attack(Entity& target) {}
-
 int main() {
-	srand(static_cast<unsigned int>(time(NULL))); // static_cast<unsigned int> Ãß°¡
+    srand(time(NULL));
 
-	Player player("Hero");
-	Monster monster("Goblin");
+    Player player("Hero");
+    Monster monster("Goblin");
 
-	cout << "--- ÀüÅõ ½ÃÀÛ! ---\n";
+    player.displayStatus();
+    monster.displayStatus();
 
-	while (player.isAlive() && monster.isAlive()) {
+    cout << "\n--- ì „íˆ¬ ì‹œìž‘! ---\n";
 
-		player.attack(monster);
+    while (player.isAlive() && monster.isAlive()) {
+        player.attack(monster);
 
-		if (monster.isAlive()) {
-			monster.attack(player);
-		}
+        if (monster.isAlive()) {
+            monster.attack(player);
+        }
 
-		cout << "--- ÅÏ Á¾·á ---\n";
-		player.displayStatus();
-		monster.displayStatus();
-		cout << '\n';
-	}
+        cout << "--- í„´ ì¢…ë£Œ ---\n";
+        player.displayStatus();
+        monster.displayStatus();
+        cout << "\n";
+    }
 
-	cout << "--- ÀüÅõ Á¾·á! ---\n";
-	if (player.isAlive()) {
-		cout << "Player [Hero] ½Â¸®!\n";
-	}
-	else {
-		cout << "Monster [Goblin] ½Â¸®!\n";
-	}
+    cout << "--- ì „íˆ¬ ì¢…ë£Œ! ---\n";
+    if (player.isAlive()) {
+        cout << "Player [" << player.getName() << "] ìŠ¹ë¦¬!\n";
+    }
+    else {
+        cout << "Monster [" << monster.getName() << "] ìŠ¹ë¦¬!\n";
+    }
 
-	return 0;
+    return 0;
 }
