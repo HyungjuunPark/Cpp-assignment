@@ -1,64 +1,61 @@
 #include <iostream>
-
 using namespace std;
 
-// ¡é¡é¡é¡é¡é¡é [Å¬·¡½º ±¸Çö] ¡é¡é¡é¡é¡é¡é
-
-// 1. Animal (±â¹İ Å¬·¡½º / Ãß»ó Å¬·¡½º)
+// 1. Animal (ê¸°ë°˜ í´ë˜ìŠ¤ / ì¶”ìƒ í´ë˜ìŠ¤)
 class Animal {
 public:
     virtual void Speak() const = 0;
 
     virtual void Fly() const {
-        // ±âº» Animal Å¬·¡½º¿¡¼­´Â ¾Æ¹«°Íµµ ÇÏÁö ¾ÊÀ½.
+        // ê¸°ë³¸ Animal í´ë˜ìŠ¤ì—ì„œëŠ” ì•„ë¬´ê²ƒë„ í•˜ì§€ ì•ŠìŒ.
     }
 
     virtual ~Animal() {}
 };
 
-// 2. Dog (ÆÄ»ı Å¬·¡½º)
+// 2. Dog (íŒŒìƒ í´ë˜ìŠ¤)
 class Dog : public Animal {
 public:
     void Speak() const override {
-        cout << "¸Û¸Û! (Woof)\n";
+        cout << "ë©ë©! (Woof)\n";
     }
     void Fly() const override {
-        // Dog´Â ³¯ ¼ö ¾øÀ¸¹Ç·Î ºñ¾î µÒ
+        // DogëŠ” ë‚  ìˆ˜ ì—†ìœ¼ë¯€ë¡œ ë¹„ì–´ ë‘ 
     }
     ~Dog() override {
         cout << "Woof...\n";
     }
 };
 
-// 3. Cat (ÆÄ»ı Å¬·¡½º)
+// 3. Cat (íŒŒìƒ í´ë˜ìŠ¤)
 class Cat : public Animal {
 public:
     void Speak() const override {
-        cout << "¾ß¿Ë~ (Meow)\n";
+        cout << "ì•¼ì˜¹~ (Meow)\n";
     }
     void Fly() const override {
-        // CatÀº ³¯ ¼ö ¾øÀ¸¹Ç·Î ºñ¾î µÒ
+        // Catì€ ë‚  ìˆ˜ ì—†ìœ¼ë¯€ë¡œ ë¹„ì–´ ë‘ 
     }
     ~Cat() override {
         cout << "Meow...\n";
     }
 };
 
-// 4. Bird (ÆÄ»ı Å¬·¡½º)
+// 4. Bird (íŒŒìƒ í´ë˜ìŠ¤)
 class Bird : public Animal {
 public:
     void Speak() const override {
-        cout << "Â±Â± (Jjip)\n";
+        cout << "ì§¹ì§¹ (Jjip)\n";
     }
     void Fly() const override {
-        cout << "»õ°¡ ÇÏ´ÃÀ» ³³´Ï´Ù! (Flying High!)\n";
+        cout << "ìƒˆê°€ í•˜ëŠ˜ì„ ë‚©ë‹ˆë‹¤! (Flying High!)\n";
     }
     ~Bird() override {
         cout << "Jjip...\n";
     }
 };
 
-// 5. Zoo (ÇÚµé·¯ Å¬·¡½º)
+// 5. Zoo (í•¸ë“¤ëŸ¬ í´ë˜ìŠ¤)
 class Zoo {
 private:
     Animal* animalList[50];
@@ -77,7 +74,7 @@ public:
     }
 
     void MakeAllSpeak() const {
-        cout << "--- ¸ğµç µ¿¹° ¿ï±â ½ÃÀÛ! ---\n";
+        cout << "--- ëª¨ë“  ë™ë¬¼ ìš¸ê¸° ì‹œì‘! ---\n";
         for (int i = 0; i < animalCount; ++i) {
             animalList[i]->Speak();
         }
@@ -85,7 +82,7 @@ public:
     }
 
     void StartAirShow() const {
-        cout << "--- ºñÇà ¼î¸¦ ½ÃÀÛÇÕ´Ï´Ù! ---\n"; 
+        cout << "--- ë¹„í–‰ ì‡¼ë¥¼ ì‹œì‘í•©ë‹ˆë‹¤! ---\n"; 
         for (int i = 0; i < animalCount; ++i) {
             animalList[i]->Fly();
         }
@@ -93,16 +90,13 @@ public:
     }
 
     ~Zoo() {
-        cout << "Zoo ¹® ´İÀ½: µ¿¹°µéÀ» ÁıÀ¸·Î º¸³À´Ï´Ù...\n";
+        cout << "Zoo ë¬¸ ë‹«ìŒ: ë™ë¬¼ë“¤ì„ ì§‘ìœ¼ë¡œ ë³´ëƒ…ë‹ˆë‹¤...\n";
         for (int i = 0; i < animalCount; ++i) {
             delete animalList[i];
         }
     }
 };
 
-// ¡è¡è¡è¡è¡è¡è [Å¬·¡½º ±¸Çö] ¡è¡è¡è¡è¡è¡è
-
-// main ÇÔ¼ö´Â ¼öÁ¤ÇÏÁö ¸¶½Ã¿À.
 int main()
 {
     Zoo myZoo;
@@ -116,5 +110,6 @@ int main()
     myZoo.StartAirShow();
 
     return 0;
+
 
 }
