@@ -1,114 +1,110 @@
 #include <iostream>
-#include <string> // string »ç¿ëÀ» À§ÇØ Æ÷ÇÔ
+#include <string> // string ì‚¬ìš©ì„ ìœ„í•´ í¬í•¨
 
 using namespace std;
 
-// ¡é¡é¡é¡é¡é¡é [¿©±â¿¡ ÇÊ¿äÇÑ ¸ğµç Å¬·¡½º¸¦ ±¸ÇöÇÏ½Ã¿À] ¡é¡é¡é¡é¡é¡é
-
-// 1. Animal (±â¹İ Å¬·¡½º / Ãß»ó Å¬·¡½º)
+// 1. Animal (ê¸°ë°˜ í´ë˜ìŠ¤ / ì¶”ìƒ í´ë˜ìŠ¤)
 class Animal {
 public:
-    // ¼ø¼ö °¡»ó ÇÔ¼ö: µ¿¹°ÀÌ ¼Ò¸® ³»´Â ±â´É
+    // ìˆœìˆ˜ ê°€ìƒ í•¨ìˆ˜: ë™ë¬¼ì´ ì†Œë¦¬ ë‚´ëŠ” ê¸°ëŠ¥
     virtual void Speak() const = 0;
 
-    // °¡»ó ¼Ò¸êÀÚ: ÆÄ»ı Å¬·¡½º ¼Ò¸ê ½Ã ¸Ş¸ğ¸® ´©¼ö ¹æÁö
+    // ê°€ìƒ ì†Œë©¸ì: íŒŒìƒ í´ë˜ìŠ¤ ì†Œë©¸ ì‹œ ë©”ëª¨ë¦¬ ëˆ„ìˆ˜ ë°©ì§€
     virtual ~Animal() {}
 };
 
-// 2. Dog (ÆÄ»ı Å¬·¡½º)
+// 2. Dog (íŒŒìƒ í´ë˜ìŠ¤)
 class Dog : public Animal {
 public:
     void Speak() const override {
-        cout << "¸Û¸Û! (Woof)" << endl;
+        cout << "ë©ë©! (Woof)" << endl;
     }
     ~Dog() override {
         cout << "Woof..." << endl;
     }
 };
 
-// 2. Cat (ÆÄ»ı Å¬·¡½º)
+// 2. Cat (íŒŒìƒ í´ë˜ìŠ¤)
 class Cat : public Animal {
 public:
     void Speak() const override {
-        cout << "¾ß¿Ë~ (Meow)" << endl;
+        cout << "ì•¼ì˜¹~ (Meow)" << endl;
     }
     ~Cat() override {
         cout << "Meow..." << endl;
     }
 };
 
-// 2. Bird (ÆÄ»ı Å¬·¡½º)
+// 2. Bird (íŒŒìƒ í´ë˜ìŠ¤)
 class Bird : public Animal {
 public:
     void Speak() const override {
-        cout << "Â±Â± (Jjip)" << endl;
+        cout << "ì§¹ì§¹ (Jjip)" << endl;
     }
     ~Bird() override {
         cout << "Jjip..." << endl;
     }
 };
 
-// 3. Zoo (ÇÚµé·¯ Å¬·¡½º)
+// 3. Zoo (í•¸ë“¤ëŸ¬ í´ë˜ìŠ¤)
 class Zoo {
 private:
-    // Animal °´Ã¼ Æ÷ÀÎÅÍ ÀúÀå ¹è¿­ (ÃÖ´ë 50)
+    // Animal ê°ì²´ í¬ì¸í„° ì €ì¥ ë°°ì—´ (ìµœëŒ€ 50)
     Animal* animalList[50];
-    // ÇöÀç ÀúÀåµÈ µ¿¹°ÀÇ ¼ö
+    // í˜„ì¬ ì €ì¥ëœ ë™ë¬¼ì˜ ìˆ˜
     int animalCount;
 
 public:
-    // Zoo(): ±âº» »ı¼ºÀÚ
+    // Zoo(): ê¸°ë³¸ ìƒì„±ì
     Zoo() : animalCount(0) {}
 
-    // AddAnimal(Animal* animal): ¹è¿­¿¡ Animal Æ÷ÀÎÅÍ Ãß°¡
+    // AddAnimal(Animal* animal): ë°°ì—´ì— Animal í¬ì¸í„° ì¶”ê°€
     void AddAnimal(Animal* animal) {
         if (animalCount < 50) {
             animalList[animalCount++] = animal;
         }
         else {
-            // Á¤¿ø ÃÊ°ú ½Ã Ã³¸® (¸Ş¸ğ¸® ´©¼ö ¹æÁö¸¦ À§ÇØ »èÁ¦ ±ÇÀå)
+            // ì •ì› ì´ˆê³¼ ì‹œ ì²˜ë¦¬ (ë©”ëª¨ë¦¬ ëˆ„ìˆ˜ ë°©ì§€ë¥¼ ìœ„í•´ ì‚­ì œ ê¶Œì¥)
             delete animal;
-            cout << "°æ°í: µ¿¹°¿ø Á¤¿ø ÃÊ°ú!" << endl;
+            cout << "ê²½ê³ : ë™ë¬¼ì› ì •ì› ì´ˆê³¼!" << endl;
         }
     }
 
-    // MakeAllSpeak() const: ¸ğµç µ¿¹°ÀÌ Speak() ÇÏµµ·Ï ¼øÈ¸
+    // MakeAllSpeak() const: ëª¨ë“  ë™ë¬¼ì´ Speak() í•˜ë„ë¡ ìˆœíšŒ
     void MakeAllSpeak() const {
-        cout << "--- ¸ğµç µ¿¹° ¿ï±â ½ÃÀÛ! ---" << endl;
+        cout << "--- ëª¨ë“  ë™ë¬¼ ìš¸ê¸° ì‹œì‘! ---" << endl;
         for (int i = 0; i < animalCount; ++i) {
-            animalList[i]->Speak(); // ´ÙÇü¼º È£Ãâ
+            animalList[i]->Speak(); // ë‹¤í˜•ì„± í˜¸ì¶œ
         }
         cout << "--------------------------" << endl;
     }
 
-    // ~Zoo(): ¼Ò¸êÀÚ. ¸Ş½ÃÁö Ãâ·Â ÈÄ ¸ğµç µ¿Àû ÇÒ´ç ¸Ş¸ğ¸® ÇØÁ¦
+    // ~Zoo(): ì†Œë©¸ì. ë©”ì‹œì§€ ì¶œë ¥ í›„ ëª¨ë“  ë™ì  í• ë‹¹ ë©”ëª¨ë¦¬ í•´ì œ
     ~Zoo() {
-        cout << "Zoo ¹® ´İÀ½: µ¿¹°µéÀ» ÁıÀ¸·Î º¸³À´Ï´Ù..." << endl;
-        // ¹è¿­¿¡ ÀúÀåµÈ ¸ğµç Animal °´Ã¼ÀÇ ¸Ş¸ğ¸® ÇØÁ¦
+        cout << "Zoo ë¬¸ ë‹«ìŒ: ë™ë¬¼ë“¤ì„ ì§‘ìœ¼ë¡œ ë³´ëƒ…ë‹ˆë‹¤..." << endl;
+        // ë°°ì—´ì— ì €ì¥ëœ ëª¨ë“  Animal ê°ì²´ì˜ ë©”ëª¨ë¦¬ í•´ì œ
         for (int i = 0; i < animalCount; ++i) {
-            // °¡»ó ¼Ò¸êÀÚ È£ÃâÀ» ÅëÇØ Dog, Cat, BirdÀÇ ¼Ò¸êÀÚ°¡ ¸ÕÀú È£ÃâµÇ°í ¸Ş¸ğ¸®°¡ ÇØÁ¦µÊ
+            // ê°€ìƒ ì†Œë©¸ì í˜¸ì¶œì„ í†µí•´ Dog, Cat, Birdì˜ ì†Œë©¸ìê°€ ë¨¼ì € í˜¸ì¶œë˜ê³  ë©”ëª¨ë¦¬ê°€ í•´ì œë¨
             delete animalList[i];
         }
     }
 };
 
-// ¡è¡è¡è¡è¡è¡è [¿©±â¿¡ ÇÊ¿äÇÑ ¸ğµç Å¬·¡½º¸¦ ±¸ÇöÇÏ½Ã¿À] ¡è¡è¡è¡è¡è¡è
-
-// main ÇÔ¼ö´Â ¼öÁ¤ÇÏÁö ¸¶½Ã¿À.
 int main()
 {
-    // 1. Zoo Å¬·¡½º °´Ã¼ »ı¼º
+    // 1. Zoo í´ë˜ìŠ¤ ê°ì²´ ìƒì„±
     Zoo myZoo;
 
-    // 2. µ¿¹° °´Ã¼µéÀ» µ¿Àû ÇÒ´çÇÏ¿© Zoo¿¡ Ãß°¡
+    // 2. ë™ë¬¼ ê°ì²´ë“¤ì„ ë™ì  í• ë‹¹í•˜ì—¬ Zooì— ì¶”ê°€
     myZoo.AddAnimal(new Dog());
     myZoo.AddAnimal(new Cat());
     myZoo.AddAnimal(new Bird());
 
-    // 3. Zoo¿¡ ÀÖ´Â ¸ğµç µ¿¹°µéÀÌ ¼Ò¸®³»µµ·Ï ÇÔ (´ÙÇü¼º)
+    // 3. Zooì— ìˆëŠ” ëª¨ë“  ë™ë¬¼ë“¤ì´ ì†Œë¦¬ë‚´ë„ë¡ í•¨ (ë‹¤í˜•ì„±)
     myZoo.MakeAllSpeak();
 
-    // 4. main ÇÔ¼ö Á¾·á ½Ã myZoo °´Ã¼°¡ ¼Ò¸êµÇ¸é¼­
-    // ÀÚµ¿À¸·Î ¸ğµç µ¿¹°µéÀÇ ¸Ş¸ğ¸®°¡ ÇØÁ¦µÇ¾î¾ß ÇÔ
+    // 4. main í•¨ìˆ˜ ì¢…ë£Œ ì‹œ myZoo ê°ì²´ê°€ ì†Œë©¸ë˜ë©´ì„œ
+    // ìë™ìœ¼ë¡œ ëª¨ë“  ë™ë¬¼ë“¤ì˜ ë©”ëª¨ë¦¬ê°€ í•´ì œë˜ì–´ì•¼ í•¨
     return 0;
+
 }
